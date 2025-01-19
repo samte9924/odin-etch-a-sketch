@@ -23,6 +23,7 @@ function buildGrid(size = 16) {
       newSquare.id = size * i + j;
       newSquare.style.height = `${1 / size * 960}px`;
       newSquare.style.width = `${1 / size * 960}px`;
+      newSquare.style.opacity = 0.1;
       newSquare.addEventListener("mouseover", () => changeDivBackgroundColor(newSquare));
       row.appendChild(newSquare);
     }
@@ -46,8 +47,11 @@ function clearGrid() {
 
 function changeDivBackgroundColor(div) {
   let isColored = div.style.backgroundColor !== "";
+  let opacity = Number(div.style.opacity);
   if(!isColored) {
     div.style.backgroundColor = isRandomBackground ? getRandomRGB() : "aquamarine";
+  } else {
+    div.style.opacity = opacity < 1 ? opacity + 0.1 : opacity;
   }
 }
 
